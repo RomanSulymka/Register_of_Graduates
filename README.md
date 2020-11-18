@@ -11,3 +11,4 @@ TECHNOLOGIES USED:
       LICENSE              license of Apache
       README               this file
       UPGRADE              upgrading instructions
+      Operating System     Arch Linux
