@@ -6,7 +6,7 @@ TECHNOLOGIES USED:
 
       front-end/           Thymeleaf, Vue.js
       back-end/            Spring Boot
-      Database/            PostgresSQlL
+      Database/            PostgresSQL
       Testing/             JUnit
       LICENSE              license of Apache
       README               this file
