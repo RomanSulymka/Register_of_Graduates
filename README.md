@@ -1,5 +1,6 @@
 It`s my Bachelor work: Register of Graduates
 =============================
+in progress
 
 TECHNOLOGIES USED:
 ------------
