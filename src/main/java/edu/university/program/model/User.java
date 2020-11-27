@@ -34,7 +34,9 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    //TODO: add Role
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 
     public User() {
@@ -42,6 +44,14 @@ public class User implements UserDetails {
 
     public long getId() {
         return id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setId(long id) {
@@ -76,10 +86,9 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    //TODO
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;//Collections.singletonList(role);
+        return Collections.singletonList(role);
     }
 
     @Override
