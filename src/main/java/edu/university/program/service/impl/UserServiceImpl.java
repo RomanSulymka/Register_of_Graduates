@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         List<User> users = userRepository.findAll();
-        List<User> users1 = users.isEmpty() ? new ArrayList<>() : users;
-        return users1;
+        return users.isEmpty() ? new ArrayList<>() : users;
     }
 }
