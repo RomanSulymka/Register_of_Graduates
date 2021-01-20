@@ -2,6 +2,7 @@ package edu.university.program.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -25,7 +26,7 @@ public class Graduates{
     private String position;
 
     @Column(name = "graduation_year", nullable = false)
-    private int graduationYear;
+    private Date graduationYear;
 
     public Graduates() {
     }
@@ -70,11 +71,11 @@ public class Graduates{
         this.position = position;
     }
 
-    public int getGraduationYear() {
+    public Date getGraduationYear() {
         return graduationYear;
     }
 
-    public void setGraduationYear(int graduationYear) {
+    public void setGraduationYear(Date graduationYear) {
         this.graduationYear = graduationYear;
     }
 
