@@ -1,7 +1,6 @@
 package edu.university.program.service;
 
 import edu.university.program.model.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -12,5 +11,4 @@ public interface UserService {
     void delete (long id);
     List<User> getAll();
 
-    UserDetails loadUserByUsername(String username);
 }
