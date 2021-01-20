@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Graduated</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div style="margin: 0 auto; width: max-content">
+    <h2>Add new graduated</h2>
+    <form th:action="@{/graduates/create}" th:object="${graduated}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="first-name">First name:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{firstName}" id="first-name"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="last-name">Last name:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{lastName}" id="last-name"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="company">Company:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{company}" id="company"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="position">Position:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{position}" id="position">
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="graduation-year">Graduation year</label>
+                </td>
+                <td>
+                    <input type="date" th:field="*{graduationYear}" id="graduation-year"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create"/>
+                    <input type="reset" value="Clear"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
