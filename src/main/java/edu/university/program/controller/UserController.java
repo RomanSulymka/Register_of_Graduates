@@ -31,7 +31,7 @@ public class UserController {
     public String create(@Validated @ModelAttribute("user") User user, BindingResult result){
         user.setRole(roleService.readById(2));
         User newUser = userService.create(user);
-        return "reditect:/all/users/" + newUser.getId();
+        return "redirect:/all/users/" + newUser.getId();
     }
 
     @GetMapping("/{id}/read")
