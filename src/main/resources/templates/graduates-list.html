@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Graduates</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div class="col-md-offset-2 col-sm-8">
+    <h2>List of Graduates</h2>
+    <form th:action="@{/graduates/create}" method="get">
+        <div align="right">
+            <input class="btn-info btn-lg" type="submit" value="Create new Graduated">
+        </div>
+    </form>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Id</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Position</th>
+            <th scope="col">Graduation Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="graduated, iStat: ${graduates}">
+            <th scope="row" th:text="${iStat.index + 1}"></th>
+            <td th:text="${graduated.id}"></td>
+            <td>
+                <a th:href="@{|/all/users/${graduated.id}|}" th:text="${graduated.firstName + ' ' + graduated.lastName}"></a>
+            </td>
+            <td th:text="${graduated.company}"></td>
+            <td th:text="${graduated.position}"></td>
+            <td th:text="${graduated.graduationYear}"></td>
+            <td>
+                <a th:href="@{|/graduates/${graduated.id}/update|}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{|/graduates/${graduated.id}/delete|}">Remove</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
