@@ -29,10 +29,10 @@
             <th scope="row" th:text="${iStat.index + 1}"></th>
             <td th:text="${user.id}"></td>
             <td>
-                <a th:href="@{|/all/users/${user.id}|}" th:text="${user.firstName + ' ' + user.lastName}"></a>
+                <a th:href="@{|/users/${user.id}/read|}" th:text="${user.firstName + ' ' + user.lastName}"></a>
             </td>
             <td th:text="${user.email}"></td>
-
+            
             <td>
                 <a th:href="@{|/users/${user.id}/update|}">Edit</a>
             </td>
