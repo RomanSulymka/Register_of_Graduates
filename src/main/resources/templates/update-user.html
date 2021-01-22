@@ -28,14 +28,14 @@
         <div>
             <label for="last-name">Last name:</label>
             <div>
-                <input id="last-name" th:fields="*{lastName}" type="text"/>
+                <input id="last-name" th:field="*{lastName}" type="text"/>
                 <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
             </div>
         </div>
         <div>
             <label for="email">Email:</label>
             <div>
-                <input id="email" th:fields="*{email}" type="email"/>
+                <input id="email" th:field="*{email}" type="email"/>
                 <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div>
             <label for="old-password">New Password:</label>
             <div>
-                <input class="form-control" id="new-password" required th:fields="*{password}" type="password"/>
+                <input class="form-control" id="new-password" required th:field="*{password}" type="password"/>
                 <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
             </div>
         </div>
@@ -58,9 +58,9 @@
                 <select class="form-control" id="role" name="roleId">
                         <span th:each="role : ${roles}">
                             <option th:if="${role.id == user.role.id}" th:selected="${true}" th:text="${role.name.substring(0, 1) + role.name.substring(1).toLowerCase()}"
-                                    th:value="${role.id}"/>
+                                    th:value="${role.id}"></option>
                             <option th:text="${role.name.substring(0, 1) + role.name.substring(1).toLowerCase()}" th:unless="${role.id == user.role.id}"
-                                    th:value="${role.id}"/>
+                                    th:value="${role.id}"></option>
                         </span>
                 </select>
             </div>
