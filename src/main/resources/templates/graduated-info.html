@@ -5,49 +5,49 @@
     <title>Graduated info</title>
 </head>
 <body>
-<div th:replace="heared"></div>
+<div th:replace="header"></div>
 <div>
     <div>
-        <h2>Info about graduates</h2>
+        <h2>Info about Graduated</h2>
         <table class="table">
             <tr>
                 <td>Id:</td>
                 <td>
-                    <b th:text="${graduates.id}"></b>
+                    <b th:text="${graduated.id}"></b>
                 </td>
             </tr>
             <tr>
                 <td>First Name:</td>
                 <td>
-                    <b th:text="${graduates.firstName}"></b>
+                    <b th:text="${graduated.firstName}"></b>
                 </td>
             </tr>
             <tr>
                 <td>Last Name:</td>
                 <td>
-                    <b th:text="${graduates.lastName}"></b>
+                    <b th:text="${graduated.lastName}"></b>
                 </td>
             </tr>
             <tr>
                 <td>Company:</td>
                 <td>
-                    <b th:text="${graduates.company}"></b>
+                    <b th:text="${graduated.company}"></b>
                 </td>
             </tr>
             <tr>
                 <td>Position:</td>
                 <td>
-                    <b th:text="${graduates.position}"></b>
+                    <b th:text="${graduated.position}"></b>
                 </td>
             </tr>
             <tr>
                 <td>Graduation Year:</td>
-                <td th:datetime="${graduates.graduationYear}"></td>
+                <td th:datetime="${graduated.graduationYear}"></td>
             </tr>
         </table>
         <div>
-            <a th:href="@{|/graduates/${graduates.id}/update|}">Edit</a>
-            <a th:href="@{|/graduates/${graduates.id}/delete|}">Remove</a>
+            <a th:href="@{|/graduates/${graduated.id}/update|}">Edit</a>
+            <a th:href="@{|/graduates/${graduated.id}/delete|}">Remove</a>
         </div>
     </div>
 </div>
