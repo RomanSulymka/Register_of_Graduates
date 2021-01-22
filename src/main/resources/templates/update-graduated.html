@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Graduated</title>
+</head>
+<body>
+
+<div th:replace="header"></div>
+<div class="col-md-offset-2">
+    <h2>Update Existing Graduated</h2>
+</div>
+<div>
+    <form class="form-horizontal" method="post" th:action="@{/graduates/create}" th:object="${graduated}">
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <div class="col-sm-8">
+                <input class="form-control" disabled id="id" type="text"/>
+            </div>
+        </div>
+        <div>
+            <label for="first-name">First name:</label>
+            <div>
+                <input id="first-name" th:field="*{firstName}" type="text"/>
+                <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="last-name">Last name:</label>
+            <div>
+                <input id="last-name" th:field="*{lastName}" type="text"/>
+                <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="position">Position:</label>
+            <div>
+                <input id="position" th:field="*{position}" type="text"/>
+                <small th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="company">Company:</label>
+            <div>
+                <input id="company" th:field="*{company}" type="text"/>
+                <small th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="graduation-year">Graduation Year:</label>
+            <div>
+                <input id="graduation-year" th:field="*{graduationYear}" type="text"/>
+                <small th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></small>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+            <input class="btn btn-info" type="submit" value="Update"/>
+            <input class="btn btn" type="reset" value="Clear"/>
+            <input name="id" th:value="*{id}" type="hidden"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>
