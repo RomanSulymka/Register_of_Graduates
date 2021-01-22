@@ -30,7 +30,7 @@
             <th scope="row" th:text="${iStat.index + 1}"></th>
             <td th:text="${graduated.id}"></td>
             <td>
-                <a th:href="@{|/all/users/${graduated.id}|}" th:text="${graduated.firstName + ' ' + graduated.lastName}"></a>
+                <a th:href="@{|/graduates/${graduated.id}/read|}" th:text="${graduated.firstName + ' ' + graduated.lastName}"></a>
             </td>
             <td th:text="${graduated.company}"></td>
             <td th:text="${graduated.position}"></td>
