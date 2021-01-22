@@ -53,24 +53,24 @@ public class UserController {
         return "update-user";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/{id}/update")
     public String update(@PathVariable long id, @RequestParam("oldPassword") String oldPassword,
                          @RequestParam("roleId") long roleId, Model model,
                          @Validated @ModelAttribute("user") User user, BindingResult result){
         User oldUser = userService.readById(id);
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             user.setRole(oldUser.getRole());
             model.addAttribute("roles", roleService.getAll());
             return "update-user";
         }
-
-        if (oldUser.getRole().getName().equals("USER")){
+        if (oldUser.getRole().getName().equals("USER")) {
             user.setRole(oldUser.getRole());
-        }else{
+        } else {
             user.setRole(roleService.readById(roleId));
         }
         userService.update(user);
-        return "redirect:/users/all";
+
+        return "redirect:/users/" + id + "/read";
     }
 
     @GetMapping("/{id}/delete")
