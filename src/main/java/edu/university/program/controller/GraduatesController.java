@@ -29,18 +29,18 @@ public class GraduatesController {
     }
 
     @PostMapping("/create")
-    private String create(@Validated @ModelAttribute("graduates") Graduates graduates, BindingResult result){
+    private String create(@Validated @ModelAttribute("graduated") Graduates graduates, BindingResult result){
         if (result.hasErrors()){
             return "create-graduated";
         }
         Graduates newGraduates = graduatesService.create(graduates);
-        return "redirect:/all/graduates/" + newGraduates.getId();
+        return "redirect:/graduates/all";
     }
 
     @GetMapping("/{id}/read")
     private String read(@PathVariable("id") long id, Model model){
-        Graduates graduates = graduatesService.readById(id);
-        model.addAttribute("graduates", graduates);
+        Graduates graduated = graduatesService.readById(id);
+        model.addAttribute("graduated", graduated);
         return "/graduated-info";
     }
 
