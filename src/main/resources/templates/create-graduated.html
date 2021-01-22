@@ -59,7 +59,7 @@
                     <label for="graduation-year">Graduation year</label>
                 </td>
                 <td>
-                    <input type="date" th:field="*{graduationYear}" id="graduation-year"/>
+                    <input type="text" th:field="*{graduationYear}" id="graduation-year"/>
                 </td>
                 <td>
                     <span th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></span>
