@@ -30,6 +30,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User readById(long id) {
+        Optional<User> optional = userRepository.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new EntityNotFoundException("User with id " + id + " not found");
+    }
+
+    @Override
     public User update(User user) {
         if (user != null) {
             User oldUser = readById(user.getId());
@@ -38,15 +47,6 @@ public class UserServiceImpl implements UserService {
             }
         }
         throw new NullEntityReferenceException("User cannot be 'null'");
-    }
-
-    @Override
-    public User readById(long id) {
-        Optional<User> optional = userRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new EntityNotFoundException("User with id " + id + " not found");
     }
 
     @Override
