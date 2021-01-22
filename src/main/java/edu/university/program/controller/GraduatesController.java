@@ -45,6 +45,20 @@ public class GraduatesController {
     }
 
     //TODO: create 'update', get and post mapping
+    @GetMapping("/{id}/update")
+    private String update(@PathVariable("id") long id, Model model){
+        Graduates graduated = graduatesService.readById(id);
+        model.addAttribute("graduated", graduated);
+        return "update-graduated";
+    }
+
+    @PostMapping("/{id}/update")
+    private String update(@PathVariable long id, Model model,
+                          @ModelAttribute Graduates graduated, BindingResult result){
+        Graduates oldGraduated = graduatesService.readById(id);
+        graduatesService.update(graduated);
+        return "redirect:/graduates"+ id + "/read";
+    }
 
     @GetMapping("/{id}/delete")
     private String delete(@PathVariable("id") long id){
