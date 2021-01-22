@@ -25,8 +25,8 @@ public class Graduates{
     @Column(name = "position", nullable = false )
     private String position;
 
-    @Column(name = "graduation_year", nullable = false)
-    private Date graduationYear;
+    @Column(name = "graduation_year", nullable = true)
+    private String graduationYear;
 
     public Graduates() {
     }
@@ -71,11 +71,11 @@ public class Graduates{
         this.position = position;
     }
 
-    public Date getGraduationYear() {
+    public String getGraduationYear() {
         return graduationYear;
     }
 
-    public void setGraduationYear(Date graduationYear) {
+    public void setGraduationYear(String graduationYear) {
         this.graduationYear = graduationYear;
     }
 
