@@ -9,7 +9,7 @@ TECHNOLOGIES USED:
       back-end/            Spring Boot, Spring Data
       Database/            PostgreSQL
       Testing/             JUnit, Mockito
-      PaaS/                Docker 
+      PaaS/                Docker, Azure 
       LICENSE              license of Apache
       README               this file
       UPGRADE              upgrading instructions
