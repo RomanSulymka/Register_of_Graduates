@@ -1,25 +1,36 @@
 package edu.university.program.controller;
 
 import edu.university.program.model.Graduates;
+import edu.university.program.repository.GraduatesRepository;
 import edu.university.program.service.GraduatesService;
-import edu.university.program.service.RoleService;
-import edu.university.program.service.UserService;
+import edu.university.program.upload.FileUploadUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/graduates")
 public class GraduatesController {
 
-    private final GraduatesService graduatesService;
-    private final UserService userService;
+    private String filePath = "/home/roman/IdeaProjects/Register_of_Graduates/src/main/resources/static/images/";
 
-    public GraduatesController(GraduatesService graduatesService, UserService userService) {
+    private final GraduatesService graduatesService;
+    private final GraduatesRepository graduatesRepository;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    public GraduatesController(GraduatesService graduatesService, GraduatesRepository graduatesRepository) {
         this.graduatesService = graduatesService;
-        this.userService = userService;
+        this.graduatesRepository = graduatesRepository;
     }
 
     @GetMapping("/create")
@@ -28,8 +39,21 @@ public class GraduatesController {
         return "create-graduated";
     }
 
+    //create new Graduated and upload his picture
     @PostMapping("/create")
-    private String create(@Validated @ModelAttribute("graduated") Graduates graduates, BindingResult result){
+    private String create(@Validated @ModelAttribute("graduated") Graduates graduates, BindingResult result,
+                          @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        graduates.setPhotos(fileName);
+
+        //saved graduates to Repository
+        Graduates savedGraduates = graduatesRepository.save(graduates);
+
+        //save pictures in the specified path under their id
+        String uploadDir = filePath + savedGraduates.getId();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         if (result.hasErrors()){
             return "create-graduated";
         }
@@ -44,7 +68,6 @@ public class GraduatesController {
         return "/graduated-info";
     }
 
-    //TODO: create 'update', get and post mapping
     @GetMapping("/{id}/update")
     private String update(@PathVariable("id") long id, Model model){
         Graduates graduated = graduatesService.readById(id);

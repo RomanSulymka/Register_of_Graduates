@@ -1,7 +1,10 @@
 package edu.university.program.model;
 
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -27,6 +30,18 @@ public class Graduates{
 
     @Column(name = "graduation_year", nullable = true)
     private String graduationYear;
+
+    @Column(nullable = true, length = 64)
+    private String photos;
+
+
+    public Graduates(String firstName, String lastName, String company, String position, String graduationYear) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+        this.position = position;
+        this.graduationYear = graduationYear;
+    }
 
     public Graduates() {
     }
@@ -79,6 +94,21 @@ public class Graduates{
         this.graduationYear = graduationYear;
     }
 
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (photos == null || id == 0) return null;
+
+        return "/images/" + id + "/" + photos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,7 +134,9 @@ public class Graduates{
                 ", lastName='" + lastName + '\'' +
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
-                ", graduationYear=" + graduationYear +
+                ", graduationYear='" + graduationYear + '\'' +
+                ", photos='" + photos + '\'' +
                 '}';
     }
+
 }

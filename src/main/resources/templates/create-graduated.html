@@ -8,7 +8,7 @@
 <div th:replace="header"></div>
 <div style="margin: 0 auto; width: max-content">
     <h2>Add new graduated</h2>
-    <form th:action="@{/graduates/create}" th:object="${graduated}" method="post">
+    <form enctype="multipart/form-data" th:action="@{/graduates/create}" th:object="${graduated}" method="post">
         <table>
             <tr>
                 <td>
@@ -63,6 +63,12 @@
                 </td>
                 <td>
                     <span th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-6 col-sm-6 contact-form1 form-group">
+                    <label>Photos: </label>
+                    <input type="file" name="image" accept="image/png, image/jpeg" />
                 </td>
             </tr>
             <tr>
