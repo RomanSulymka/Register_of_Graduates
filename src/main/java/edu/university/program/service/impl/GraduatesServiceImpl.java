@@ -3,6 +3,9 @@ package edu.university.program.service.impl;
 import edu.university.program.model.Graduates;
 import edu.university.program.repository.GraduatesRepository;
 import edu.university.program.service.GraduatesService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,5 +49,10 @@ public class GraduatesServiceImpl implements GraduatesService {
     public List<Graduates> getAll() {
         List<Graduates> graduates = graduatesRepository.findAll();
         return graduates.isEmpty() ? new ArrayList<>() : graduates;
+    }
+
+    @Override
+    public Page<Graduates> findAll(Pageable pageable) {
+        return graduatesRepository.findAll(pageable);
     }
 }

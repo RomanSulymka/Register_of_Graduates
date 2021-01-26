@@ -1,6 +1,8 @@
 package edu.university.program.repository;
 
 import edu.university.program.model.Graduates;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,4 @@ public interface GraduatesRepository extends JpaRepository<Graduates, Long> {
 
     @Query(value = "select * from graduates order by id", nativeQuery = true)
     List<Graduates> getAll();
-
 }

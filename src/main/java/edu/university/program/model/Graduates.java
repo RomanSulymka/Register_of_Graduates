@@ -106,6 +106,9 @@ public class Graduates{
     public String getPhotosImagePath() {
         if (photos == null || id == 0) return null;
 
+        //взяти картинку без підпапки
+        //return "/images/" + photos;
+
         return "/images/" + id + "/" + photos;
     }
 

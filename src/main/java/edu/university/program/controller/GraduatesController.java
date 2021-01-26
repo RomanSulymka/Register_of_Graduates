@@ -6,9 +6,12 @@ import edu.university.program.service.GraduatesService;
 import edu.university.program.upload.FileUploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/graduates")
@@ -51,9 +55,14 @@ public class GraduatesController {
         Graduates savedGraduates = graduatesRepository.save(graduates);
 
         //save pictures in the specified path under their id
+        //закоментувати якщо використовуємо зберігання в підпапках з номером id
         String uploadDir = filePath + savedGraduates.getId();
 
+        //якщо потрібно зберігати в загалиний корінь папки без підпапки №id, то використовуємо цей варіант
+        //FileUploadUtil.saveFile(filePath, fileName, multipartFile);
+
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
         if (result.hasErrors()){
             return "create-graduated";
         }
@@ -90,8 +99,10 @@ public class GraduatesController {
     }
 
     @GetMapping("/all")
-    private String getAll(Model model){
-        model.addAttribute("graduates", graduatesService.getAll());
+    private String getAll(ModelMap model, Pageable pageable){
+
+        model.addAttribute("page", graduatesRepository.findAll(pageable));
+        model.addAttribute("graduates", graduatesService.findAll(pageable));
         return "graduates-list";
     }
 }
