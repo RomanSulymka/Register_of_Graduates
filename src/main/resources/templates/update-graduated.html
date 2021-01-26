@@ -11,7 +11,7 @@
     <h2>Update Existing Graduated</h2>
 </div>
 <div>
-    <form class="form-horizontal" method="post" th:action="@{/graduates/create}" th:object="${graduated}">
+    <form enctype="multipart/form-data"  class="form-horizontal" method="post" th:action="@{/graduates/create}" th:object="${graduated}">
         <div class="form-group">
             <label for="id">ID:</label>
             <div class="col-sm-8">
@@ -54,10 +54,9 @@
             </div>
         </div>
         <div>
-            <label for="photos">Photo:</label>
+            <label>Photos: </label>
             <div>
-                <input id="photos" th:field="*{photos}" type="file"/>
-                <small th:if="${#fields.hasErrors('photos')}" th:errors="*{photos}"></small>
+                <input type="file" name="image" accept="image/png, image/jpeg" />
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-8">

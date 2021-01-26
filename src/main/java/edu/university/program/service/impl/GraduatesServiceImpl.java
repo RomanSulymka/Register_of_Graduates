@@ -1,6 +1,8 @@
 package edu.university.program.service.impl;
 
+import edu.university.program.exception.NullEntityReferenceException;
 import edu.university.program.model.Graduates;
+import edu.university.program.model.User;
 import edu.university.program.repository.GraduatesRepository;
 import edu.university.program.service.GraduatesService;
 import org.springframework.data.domain.Page;
@@ -27,10 +29,14 @@ public class GraduatesServiceImpl implements GraduatesService {
     }
 
     @Override
-    public Graduates update(Graduates graduates) {
-        Graduates oldGraduates = readById(graduates.getId());
-        //TODO: CHECK ME!!!
-        return graduatesRepository.save(graduates);
+    public Graduates update(Graduates graduated) {
+        if (graduated != null) {
+            Graduates oldGraduated = readById(graduated.getId());
+            if (oldGraduated != null) {
+                return graduatesRepository.save(graduated);
+            }
+        }
+        throw new NullEntityReferenceException("User cannot be 'null'");
     }
 
     @Override

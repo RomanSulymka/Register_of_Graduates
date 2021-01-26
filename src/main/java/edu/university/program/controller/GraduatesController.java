@@ -6,9 +6,11 @@ import edu.university.program.service.GraduatesService;
 import edu.university.program.upload.FileUploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -85,9 +87,24 @@ public class GraduatesController {
     }
 
     @PostMapping("/{id}/update")
-    private String update(@PathVariable long id, Model model,
-                          @ModelAttribute Graduates graduated, BindingResult result){
+    private String update(@PathVariable long id, Model model, BindingResult result,
+                          @Validated @ModelAttribute("graduated") Graduates graduated,
+                          @RequestParam("image") MultipartFile multipartFile) throws IOException {
         Graduates oldGraduated = graduatesService.readById(id);
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        graduated.setPhotos(fileName);
+
+        //saved graduates to Repository
+        Graduates savedGraduates = graduatesRepository.save(graduated);
+
+        //save pictures in the specified path under their id
+        //закоментувати якщо використовуємо зберігання в підпапках з номером id
+        String uploadDir = filePath + savedGraduates.getId();
+
+        //якщо потрібно зберігати в загалиний корінь папки без підпапки №id, то використовуємо цей варіант
+        //FileUploadUtil.saveFile(filePath, fileName, multipartFile);
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         graduatesService.update(graduated);
         return "redirect:/graduates"+ id + "/read";
     }
@@ -99,7 +116,7 @@ public class GraduatesController {
     }
 
     @GetMapping("/all")
-    private String getAll(ModelMap model, Pageable pageable){
+    private String getAll(ModelMap model, @PageableDefault(size=10) Pageable pageable){
 
         model.addAttribute("page", graduatesRepository.findAll(pageable));
         model.addAttribute("graduates", graduatesService.findAll(pageable));
