@@ -53,6 +53,13 @@
                 <small th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></small>
             </div>
         </div>
+        <div>
+            <label for="photos">Photo:</label>
+            <div>
+                <input id="photos" th:field="*{photos}" type="file"/>
+                <small th:if="${#fields.hasErrors('photos')}" th:errors="*{photos}"></small>
+            </div>
+        </div>
         <div class="col-sm-offset-2 col-sm-8">
             <input class="btn btn-info" type="submit" value="Update"/>
             <input class="btn btn" type="reset" value="Clear"/>

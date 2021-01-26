@@ -42,7 +42,15 @@
             </tr>
             <tr>
                 <td>Graduation Year:</td>
-                <td th:datetime="${graduated.graduationYear}"></td>
+                <td>
+                    <b th:datetime="${graduated.graduationYear}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>Photo:</td>
+                <td>
+                    <b th:src="@{${graduated.photosImagePath}}" width="100"></b>
+                </td>
             </tr>
         </table>
         <div>
