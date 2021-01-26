@@ -59,7 +59,8 @@
                     <label for="graduation-year">Graduation year</label>
                 </td>
                 <td>
-                    <input type="text" th:field="*{graduationYear}" id="graduation-year"/>
+                    <input type="text" th:field="*{graduationYear}" pattern="(19[789]\d|20[01]\d)"
+                           title="enter years between 1970 - 2019" id="graduation-year"/>
                 </td>
                 <td>
                     <span th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></span>

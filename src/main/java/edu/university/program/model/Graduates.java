@@ -4,6 +4,7 @@ package edu.university.program.model;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class Graduates{
     @Column(name = "position", nullable = false )
     private String position;
 
+    @Pattern(regexp = "(19[789]\\d|20[01]\\d)", message = "1970-2019 years")
     @Column(name = "graduation_year", nullable = true)
     private String graduationYear;
 
