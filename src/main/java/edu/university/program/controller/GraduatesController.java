@@ -6,9 +6,6 @@ import edu.university.program.service.GraduatesService;
 import edu.university.program.upload.FileUploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/graduates")
@@ -42,6 +38,8 @@ public class GraduatesController {
     @GetMapping("/create")
     private String create(Model model){
         model.addAttribute("graduated", new Graduates());
+
+        log.info("Create graduated");
         return "create-graduated";
     }
 
@@ -68,6 +66,8 @@ public class GraduatesController {
         if (result.hasErrors()){
             return "create-graduated";
         }
+
+        log.info("Create new graduated: " + graduates.getFirstName() + " " + graduates.getLastName());
         Graduates newGraduates = graduatesService.create(graduates);
         return "redirect:/graduates/all";
     }
@@ -76,6 +76,8 @@ public class GraduatesController {
     private String read(@PathVariable("id") long id, Model model){
         Graduates graduated = graduatesService.readById(id);
         model.addAttribute("graduated", graduated);
+
+        log.info("Read graduated: " + graduated.getFirstName() + " " + graduated.getLastName() );
         return "/graduated-info";
     }
 
@@ -83,6 +85,8 @@ public class GraduatesController {
     private String update(@PathVariable("id") long id, Model model){
         Graduates graduated = graduatesService.readById(id);
         model.addAttribute("graduated", graduated);
+
+        log.info("Update user");
         return "update-graduated";
     }
 
@@ -106,12 +110,16 @@ public class GraduatesController {
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         graduatesService.update(graduated);
+
+        log.info("Update user:" + graduated.getLastName());
         return "redirect:/graduates"+ id + "/read";
     }
 
     @GetMapping("/{id}/delete")
     private String delete(@PathVariable("id") long id){
         graduatesService.delete(id);
+
+        log.info("Deleted user by id: " + id);
         return "redirect:/graduates/all";
     }
 
@@ -120,6 +128,8 @@ public class GraduatesController {
 
         model.addAttribute("page", graduatesRepository.findAll(pageable));
         model.addAttribute("graduates", graduatesService.findAll(pageable));
+
+        log.info("Get all");
         return "graduates-list";
     }
 }
