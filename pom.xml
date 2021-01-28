@@ -72,16 +72,11 @@
             <artifactId>thymeleaf-spring-data-dialect</artifactId>
             <version>3.4.0</version>
         </dependency>
+        <!-- security -->
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        <exclusions>
-            <exclusion>
-                <groupId>nz.net.ultraq.thymeleaf</groupId>
-                <artifactId>thymeleaf-layout-dialect</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

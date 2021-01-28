@@ -4,6 +4,7 @@ import edu.university.program.exception.NullEntityReferenceException;
 import edu.university.program.model.User;
 import edu.university.program.repository.UserRepository;
 import edu.university.program.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.getUserByEmail(username);
         if(user == null){
             throw new UsernameNotFoundException("User not found!");

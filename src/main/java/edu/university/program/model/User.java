@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "users")
@@ -88,7 +89,7 @@ public class User  implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(role);
     }
 
     public String getPassword() {
