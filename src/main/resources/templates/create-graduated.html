@@ -34,6 +34,40 @@
             </tr>
             <tr>
                 <td>
+                    <label for="middle-name">Middle name:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{middleName}" id="middle-name"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Gender:</label>
+                </td>
+                <td>
+                    <input id="option1" name="man" type="radio" th:value="Man" th:field="*{gender}"> Man
+                    <input id="option2" name="women" type="radio" th:value="Women" th:field="*{gender}"> Women
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">E-mail:</label>
+                </td>
+                <td>
+                    <input type="email" th:field="*{email}" id="email"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="company">Company:</label>
                 </td>
                 <td>
@@ -56,14 +90,38 @@
             </tr>
             <tr>
                 <td>
-                    <label for="graduation-year">Graduation year</label>
+                    <label for="graduation-year-from-bachelor">Graduation year from Bachelor</label>
                 </td>
                 <td>
-                    <input type="text" th:field="*{graduationYear}" pattern="(19[789]\d|20[01]\d)"
-                           title="enter years between 1970 - 2019" id="graduation-year"/>
+                    <input type="text" th:field="*{graduationYearFromBachelor}" pattern="(19[789]\d|20[01]\d)"
+                           title="enter years between 1970 - 2019" id="graduation-year-from-bachelor"/>
                 </td>
                 <td>
-                    <span th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></span>
+                    <span th:if="${#fields.hasErrors('graduationYearFromBachelor')}" th:errors="*{graduationYearFromBachelor}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="graduation-year-from-specialist">Graduation year from ORK Specialist</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{graduationYearFromOrkSpecialist}" pattern="(19[789]\d|20[01]\d)"
+                           title="enter years between 1970 - 2019" id="graduation-year-from-specialist"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('graduationYearFromOrkSpecialist')}" th:errors="*{graduationYearFromOrkSpecialist}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="graduation-year-from-master">Graduation year from Master</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{graduationYearFromMaster}" pattern="(19[789]\d|20[01]\d)"
+                           title="enter years between 1970 - 2019" id="graduation-year-from-master"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('graduationYearFromMaster')}" th:errors="*{graduationYearFromMaster}"></span>
                 </td>
             </tr>
             <tr>
