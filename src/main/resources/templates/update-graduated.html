@@ -33,6 +33,28 @@
             </div>
         </div>
         <div>
+            <label for="middle-name">Middle name:</label>
+            <div>
+                <input id="middle-name" th:field="*{middleName}" type="text"/>
+                <small th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></small>
+            </div>
+        </div>
+        <div>
+            <label>Sex:</label>
+            <div>
+                <input id="option1" name="man" type="radio" th:value="Man" th:field="*{gender}"> Man
+                <input id="option2" name="women" type="radio" th:value="Women" th:field="*{gender}"> Women
+                <small th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <div>
+                <input id="email" th:field="*{email}" type="text"/>
+                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+            </div>
+        </div>
+        <div>
             <label for="position">Position:</label>
             <div>
                 <input id="position" th:field="*{position}" type="text"/>
@@ -47,10 +69,24 @@
             </div>
         </div>
         <div>
-            <label for="graduation-year">Graduation Year:</label>
+            <label for="graduation-year-from-bachelor">Graduation Year From Bachelor:</label>
             <div>
-                <input id="graduation-year" th:field="*{graduationYear}" type="text"/>
-                <small th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></small>
+                <input id="graduation-year-from-bachelor" th:field="*{graduationYearFromBachelor}" type="text"/>
+                <small th:if="${#fields.hasErrors('graduationYearFromBachelor')}" th:errors="*{graduationYearFromBachelor}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="graduation-year-from-specialist">Graduation Year From ORK Specialist:</label>
+            <div>
+                <input id="graduation-year-from-specialist" th:field="*{graduationYearFromOrkSpecialist}" type="text"/>
+                <small th:if="${#fields.hasErrors('graduationYearFromOrkSpecialist')}" th:errors="*{graduationYearFromOrkSpecialist}"></small>
+            </div>
+        </div>
+        <div>
+            <label for="graduation-year-from-master">Graduation Year From Master:</label>
+            <div>
+                <input id="graduation-year-from-master" th:field="*{graduationYearFromMaster}" type="text"/>
+                <small th:if="${#fields.hasErrors('graduationYearFromMaster')}" th:errors="*{graduationYearFromMaster}"></small>
             </div>
         </div>
         <div>
