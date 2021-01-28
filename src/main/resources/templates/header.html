@@ -1,11 +1,20 @@
 <div xmlns:th="http://www.thymeleaf.org">
-    <div>
-        <a th:href="@{/}">Home Page</a>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">Home Page</a>
+            </div>
+        </div>
+        <div style="position: absolute; top: 10px; right: 20px;">
         <span>
             | <a th:href="@{/graduates/all}">List of Graduates</a>
         </span>
         <span>
             | <a th:href="@{/users/all}">List of Users</a>
-        </span>
-    </div>
+        </span>|
+            <form th:action="@{/logout}" method="post" style="display: inline-block">
+                <input type="submit" value="LogOut">
+            </form>
+        </div>
+    </nav>
 </div>
