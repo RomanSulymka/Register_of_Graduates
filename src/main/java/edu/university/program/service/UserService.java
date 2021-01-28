@@ -11,4 +11,5 @@ public interface UserService {
     void delete (long id);
     List<User> getAll();
 
+    User loadUserByUsername (String username);
 }
