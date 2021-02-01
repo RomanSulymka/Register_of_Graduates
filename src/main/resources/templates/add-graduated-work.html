@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Work info about graduated</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div style="margin: 0 auto; width: max-content">
+    <h2>Add new graduated</h2>
+    <form enctype="multipart/form-data" th:action="@{|/works/create/graduates/${graduated_id}|}" th:object="${work}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="company">Company:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{company}" id="company"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="position">Position:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{position}" id="position"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="start-work">Start Work:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{startWork}" id="start-work"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('startWork')}" th:errors="*{startWork}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="end-work">End Work:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{endWork}" id="end-work"/>
+                </td>
+                <td>
+                    <span th:if="${#fields.hasErrors('endWork')}" th:errors="*{endWork}"></span>
+                </td>
+            </tr>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="workStatus">Work Status:</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="workStatus" id="workStatus">
+                        <option th:each="workStatus : ${workStatus}" th:value="${workStatus}" th:text="${workStatus.name()
+                            .substring(0, 1) + workStatus.name().substring(1).toLowerCase()}"/>
+                    </select>
+                </div>
+            </div>
+            <input name="workId" th:value="${work.id}">
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create"/>
+                    <input type="reset" value="Clear"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
