@@ -1,8 +1,11 @@
 package edu.university.program.controller;
 
 import edu.university.program.model.Graduates;
+import edu.university.program.model.Work;
 import edu.university.program.repository.GraduatesRepository;
+import edu.university.program.repository.WorkRepository;
 import edu.university.program.service.GraduatesService;
+import edu.university.program.service.WorkService;
 import edu.university.program.upload.FileUploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,17 +30,23 @@ public class GraduatesController {
 
     private final GraduatesService graduatesService;
     private final GraduatesRepository graduatesRepository;
+    private final WorkService workService;
+    private final WorkRepository workRepository;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public GraduatesController(GraduatesService graduatesService, GraduatesRepository graduatesRepository) {
+    public GraduatesController(GraduatesService graduatesService, GraduatesRepository graduatesRepository,
+                               WorkService workService, WorkRepository workRepository) {
         this.graduatesService = graduatesService;
         this.graduatesRepository = graduatesRepository;
+        this.workService = workService;
+        this.workRepository = workRepository;
     }
 
     @GetMapping("/create")
     private String create(Model model){
         model.addAttribute("graduated", new Graduates());
+        model.addAttribute("work", new Work());
 
         log.info("Create graduated");
         return "create-graduated";
@@ -69,14 +78,16 @@ public class GraduatesController {
 
         log.info("Create new graduated: " + graduates.getFirstName() + " " + graduates.getLastName());
         Graduates newGraduates = graduatesService.create(graduates);
-        return "redirect:/graduates/all";
+        return "redirect:/works/create/graduates/" + newGraduates.getId();
     }
 
     @GetMapping("/{id}/read")
     private String read(@PathVariable("id") long id, Model model){
         Graduates graduated = graduatesService.readById(id);
-        model.addAttribute("graduated", graduated);
+        Work works = workService.readById(1);
 
+        model.addAttribute("graduated", graduated);
+        model.addAttribute("works", works);
         log.info("Read graduated: " + graduated.getFirstName() + " " + graduated.getLastName() );
         return "/graduated-info";
     }
