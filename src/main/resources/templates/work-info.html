@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>All Works of Graduated List</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div class="col-md-offset-2 col-sm-8">
+
+
+
+    <br>
+    <h3>Works:</h3>
+    <table class="table">
+        <tr>
+            <th>No.</th>
+            <th>Id</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Start work</th>
+            <th>End work</th>
+            <th>Work status</th>
+            <th colspan="2">Operations</th>
+        </tr>
+        <tr th:each="work, iStat: ${works}">
+            <td th:text="${iStat.index + 1}"/>
+            <td th:text="${work.id}"/>
+            <td th:text="${work.company}"/>
+            <td th:text="${work.position}"/>
+            <td th:text="${work.startWork}"/>
+            <td th:text="${work.endWork}"/>
+            <td th:text="${work.workStatus.name().substring(0, 1) + work.workStatus.name().substring(1).toLowerCase()}"/>
+            <td>
+                <a th:href="@{|/works/${work.id}/update/work/${work.id}|}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{|/works/${work.id}/delete/work/${work.id}|}">Remove</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+</div>
+</body>
+</html>
