@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
@@ -28,4 +29,23 @@ public class GlobalExceptionHandler {
     public ModelAndView accessForbiddenExceptionHandler(HttpServletRequest request, AccessDeniedException exception){
         return getModelAndView(request, HttpStatus.FORBIDDEN, exception);
     }
+
+    @ExceptionHandler(NullEntityReferenceException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ModelAndView nullEntityReferenceExceptionHandler(HttpServletRequest request, NullEntityReferenceException exception) {
+        return getModelAndView(request, HttpStatus.BAD_REQUEST, exception);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(value= HttpStatus.NOT_FOUND)
+    public ModelAndView entityNotFoundExceptionHandler(HttpServletRequest request, EntityNotFoundException exception) {
+        return getModelAndView(request, HttpStatus.NOT_FOUND, exception);
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
+    public ModelAndView internalServerErrorHandler(HttpServletRequest request, Exception exception) {
+        return getModelAndView(request, HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
 }
