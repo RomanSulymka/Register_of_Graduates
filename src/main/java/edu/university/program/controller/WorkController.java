@@ -48,26 +48,29 @@ public class WorkController {
         return "redirect:/graduates/all";
     }
 
-    @GetMapping("/{id}/graduated")
-    public String read(@PathVariable long id, Model model) {
+    @GetMapping("/{id}/graduated/{graduated_id}")
+    public String read(@PathVariable long id, @PathVariable("graduated_id") long graduated_id, Model model) {
         Graduates graduated = graduatesService.readById(id);
         List<Work> works = workService.getByWorkId(id);
 
         model.addAttribute("graduated", graduated);
         model.addAttribute("works", works);
+        model.addAttribute("graduated_id", graduated_id);
         return "work-info";
     }
 
-    @GetMapping("/{id}/update")
-    public String update(@PathVariable long id, Model model) {
+    @GetMapping("/{id}/update/{graduated_id}")
+    public String update(@PathVariable long id, @PathVariable("graduated_id") long graduated_id, Model model) {
         Work work = workService.readById(id);
         model.addAttribute("work", work);
         model.addAttribute("workStatus", WorkStatus.values());
+        model.addAttribute("graduated", graduated_id);
         return "update-work";
     }
 
-    @PostMapping("/{id}/update")
+    @PostMapping("/{id}/update/{graduated_id}")
     public String update(@PathVariable long id, @Validated @ModelAttribute("work") Work work,
+                         @PathVariable("graduated_id") long graduated_id,
                          BindingResult result) {
         Work oldWork = workService.readById(id);
         if (result.hasErrors()) {
