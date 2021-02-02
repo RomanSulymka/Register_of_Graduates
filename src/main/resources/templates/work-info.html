@@ -8,9 +8,11 @@
 <body>
 <div th:replace="header"></div>
 <div class="col-md-offset-2 col-sm-8">
-
-
-
+    <form enctype="multipart/form-data" th:action="@{|/works/create/graduates/${graduated_id}|}" th:object="${works}"  method="get">
+        <div align="right">
+            <input class="btn-info btn-lg" type="submit" value="Add new work">
+        </div>
+    </form>
     <br>
     <h3>Works:</h3>
     <table class="table">
@@ -33,10 +35,10 @@
             <td th:text="${work.endWork}"/>
             <td th:text="${work.workStatus.name().substring(0, 1) + work.workStatus.name().substring(1).toLowerCase()}"/>
             <td>
-                <a th:href="@{|/works/${work.id}/update/work/${work.id}|}">Edit</a>
+                <a th:href="@{|/works/${work.id}/update/${graduated.id}|}">Edit</a>
             </td>
             <td>
-                <a th:href="@{|/works/${work.id}/delete/work/${work.id}|}">Remove</a>
+                <a th:href="@{|/works/${work.id}/delete/${graduated.id}|}">Remove</a>
             </td>
         </tr>
     </table>
