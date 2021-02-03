@@ -5,12 +5,12 @@
                 <a class="navbar-brand" th:href="@{/}">Home Page</a>
             </div>
         </div>
-        <div style="position: absolute; top: 10px; right: 20px;">
+        <div class="btn-group" style="position: absolute; top: 10px; right: 20px;">
         <span>
-            | <a th:href="@{/graduates/all}">List of Graduates</a>
+            | <a class="btn btn-outline-primary" th:href="@{/graduates/all}">List of Graduates</a>
         </span>
         <span>
-            | <a th:href="@{/users/all}">List of Users</a>
+            | <a class="btn btn-outline-primary" th:href="@{/users/all}">List of Users</a>
         </span>|
             <form th:action="@{/logout}" method="post" style="display: inline-block">
                 <input type="submit" value="LogOut">

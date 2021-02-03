@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 </head>
 <body>
 <div th:replace="header"></div>
@@ -10,56 +12,33 @@
     <h2>New User registration</h2>
     <form th:action="@{/users/create}" th:object="${user}" method="post">
         <table>
-            <tr>
-                <td>
-                    <label for="first-name">First Name:</label>
-                </td>
-                <td>
-                    <input type="text" th:field="*{firstName}" id="first-name"/>
-                </td>
-                <td>
-                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="last-name">Last Name:</label>
-                </td>
-                <td>
-                    <input type="text" th:field="*{lastName}" id="last-name"/>
-                </td>
-                <td>
-                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="email">E-mail:</label>
-                </td>
-                <td>
-                    <input type="email" th:field="*{email}" id="email"/>
-                </td>
-                <td>
-                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password">Password:</label>
-                </td>
-                <td>
-                    <input type="password" th:field="*{password}" id="password"/>
-                </td>
-                <td>
-                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                </td>
-            </tr>
-            <tr>
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input class="form-control" type="text" th:field="*{firstName}" id="first-name"/>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input class="form-control"  type="text" th:field="*{lastName}" id="last-name"/>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input class="form-control" type="email" th:field="*{email}" id="email"/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+               <label for="password">Password:</label>
+               <input class="form-control"  type="password" th:field="*{password}" id="password"/>
+               <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <div class="form-group">
                 <td colspan="2">
-                    <input type="submit" value="Register"/>
-                    <input type="reset" value="Clear"/>
+                    <input class="btn btn-success btn-rounded" type="submit" value="Register"/>
+                    <input class="btn btn-danger btn-rounded" type="reset" value="Clear"/>
                 </td>
-            </tr>
+            </div>
         </table>
     </form>
 </div>
