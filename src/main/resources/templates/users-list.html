@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>List of Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <style>
+        body {
+            background: #f4f4f4 /* Цвет фона и путь к файлу */
+        }
+    </style>
 </head>
 <body>
 <div th:replace="header"></div>
@@ -33,10 +43,10 @@
             </td>
             <td th:text="${user.email}"></td>
             <td>
-                <a th:href="@{|/users/${user.id}/update|}">Edit</a>
+                <a class="btn btn-outline-success" th:href="@{|/users/${user.id}/update|}">Edit</a>
             </td>
             <td>
-                <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
+                <a class="btn btn-outline-success" th:href="@{|/users/${user.id}/delete|}">Remove</a>
             </td>
         </tr>
         </tbody>

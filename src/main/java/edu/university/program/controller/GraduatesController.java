@@ -44,9 +44,9 @@ public class GraduatesController {
     }
 
     @GetMapping("/create")
-    private String create(Model model){
+    private String create(Model model, Work work){
         model.addAttribute("graduated", new Graduates());
-        model.addAttribute("work", new Work());
+        model.addAttribute("work", work);
 
         log.info("Create graduated");
         return "create-graduated";
@@ -93,10 +93,10 @@ public class GraduatesController {
     }
 
     @GetMapping("/{id}/update")
-    private String update(@PathVariable("id") long id, Model model){
+    private String update(@PathVariable("id") long id, Model model, Work work){
         Graduates graduated = graduatesService.readById(id);
         model.addAttribute("graduated", graduated);
-
+        model.addAttribute("work", work);
         log.info("Update user");
         return "update-graduated";
     }
